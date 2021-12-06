@@ -13,14 +13,14 @@ Graph::Graph()
 
 QPair<Vertex*,ALVertex*> Graph::AddVertex(QString str){
     if(this->VertexNameSet.find(str) != this->VertexNameSet.end()){
-        return {nullptr,nullptr};  //名字重复
+        return {nullptr,nullptr};  //the name is used
     }
     this->VertexNameSet.insert(str);
     int Id = this->AdjmultiList.size();
     Vertex* vex = new Vertex(str,Id);
-    this->AdjmultiList.push_back(vex);   //向邻接多重表插入该顶点
+    this->AdjmultiList.push_back(vex);
     ALVertex* ALvex = new ALVertex(str,Id);
-    this->AdjList.push_back(ALvex);  //向邻接表插入该顶点
+    this->AdjList.push_back(ALvex);
     this->numVex++;
     return {vex,ALvex};
 }
@@ -30,7 +30,7 @@ QPair<Edge*,QPair<ALEdge*,ALEdge*>> Graph::AddEdge(int id_i,int id_j,int w){
         if((id_i == EdgeList[i]->iVex && id_j == EdgeList[i]->jVex)
         || (id_i == EdgeList[i]->jVex && id_j == EdgeList[i]->iVex)
         || id_i >= this->AdjmultiList.size() || id_j >= this->AdjmultiList.size()){
-            return {nullptr,{nullptr,nullptr}};  //已存在该边或者不存在该结点
+            return {nullptr,{nullptr,nullptr}};  //the edge is existed or the vertex is not exist
         }
     }
     Edge* edge = new Edge(id_i,id_j,w);
@@ -51,9 +51,9 @@ QPair<Edge*,QPair<ALEdge*,ALEdge*>> Graph::AddEdge(int id_i,int id_j,int w){
 
 bool Graph::DeleteVertex(int idx){
     if(idx >= AdjmultiList.size()){
-        return false;  //没找到该结点
+        return false;  //not found
     }
-    //邻接表中该结点的删除，以及结点下标的修改
+    //delete from adjacency list
     ALEdge* p = AdjList[idx]->firstedge;
     while(p){
         ALEdge* q = p->next;
@@ -98,7 +98,7 @@ bool Graph::DeleteVertex(int idx){
         }
     }
 
-    //边集列表中的修改
+    //delete from edge list
     for(int i = 0; i < EdgeList.size(); i++){
         if(EdgeList[i]->iVex == idx || EdgeList[i]->jVex == idx){
             EdgeList.erase(EdgeList.begin() + i);
@@ -108,9 +108,7 @@ bool Graph::DeleteVertex(int idx){
 
     numEdge = EdgeList.size();
 
-    //多重邻接表中该结点的删除，以及结点下标的修改
-
-    //将与该结点相关的边从其他结点的边链表中去除
+    //delete from adjacency multilist
     for(int i = 0; i < AdjmultiList.size(); i++){
         if(i == idx){
             continue;
@@ -150,7 +148,6 @@ bool Graph::DeleteVertex(int idx){
         }
     }
 
-    //释放这个结点及相邻边的空间
     Edge* edge = AdjmultiList[idx]->firstedge;
     while(edge){
         Edge* temp = edge;
@@ -165,7 +162,6 @@ bool Graph::DeleteVertex(int idx){
     AdjmultiList.erase(AdjmultiList.begin() + idx);
     delete Vex;
 
-    //修改下标
     for(int i = 0; i < AdjmultiList.size(); i++){
         if(AdjmultiList[i]->id > idx){
             if(AdjmultiList[i]->data == "V" + QString::number(AdjmultiList[i]->id)){
@@ -192,7 +188,6 @@ bool Graph::DeleteVertex(int idx){
         }
     }
 
-    //重置名字集合
     VertexNameSet.clear();
     for(int i = 0; i < AdjmultiList.size(); i++){
         VertexNameSet.insert(AdjmultiList[i]->data);
@@ -210,13 +205,13 @@ bool Graph::DeleteEdge(int id_i,int id_j){
         }
     }
     if(idx == -1){
-        return false; //没找到该边
+        return false; //not found
     }
     Edge* edge = EdgeList[idx];
-    this->EdgeList.erase(EdgeList.begin()+idx);  //删除边集数组中的这条边
+    this->EdgeList.erase(EdgeList.begin()+idx);
 
-    //邻接表中的删除
-    ALEdge* p = this->AdjList[id_i]->firstedge;  //删除邻接表中id_i边集链表中的这条边
+    //delete from adjacency list
+    ALEdge* p = this->AdjList[id_i]->firstedge;
     if(p->Vex == id_j){
         ALEdge* temp = p;
         this->AdjList[id_i]->firstedge = p->next;
@@ -232,7 +227,7 @@ bool Graph::DeleteEdge(int id_i,int id_j){
         p->next = temp->next;
         delete temp;
     }
-    p = this->AdjList[id_j]->firstedge;  //删除邻接表中id_j边集链表中的这条边
+    p = this->AdjList[id_j]->firstedge;
     if(p->Vex == id_i){
         ALEdge* temp = p;
         this->AdjList[id_j]->firstedge = p->next;
@@ -249,8 +244,8 @@ bool Graph::DeleteEdge(int id_i,int id_j){
         delete temp;
     }
 
-    //邻接多重表中的删除
-    Edge* q = this->AdjmultiList[id_i]->firstedge;  //删除邻接多重表中id_i边集链表中的这条边
+    //delete from adjacency multilist
+    Edge* q = this->AdjmultiList[id_i]->firstedge;
     if(q->iVex == id_i && q->jVex == id_j){
         AdjmultiList[id_i]->firstedge = q->iLink;
     }else if(q->iVex == id_j && q->jVex == id_i){
@@ -290,7 +285,7 @@ bool Graph::DeleteEdge(int id_i,int id_j){
         }
     }
 
-    q = this->AdjmultiList[id_j]->firstedge;  //删除邻接多重表中id_j边集链表中的这条边
+    q = this->AdjmultiList[id_j]->firstedge;
     if(q->iVex == id_i && q->jVex == id_j){
         AdjmultiList[id_j]->firstedge = q->jLink;
     }else if(q->iVex == id_j && q->jVex == id_i){
@@ -492,7 +487,7 @@ void Graph::PrimAlgorithmForMST(ALVertex* vex,QPair<QVector<ALVertex*>,QVector<A
             }
         }
         if(idx == -1){
-            return;  //存在非联通结点
+            return;  //exist non-connected nodes
         }
         v.first.push_back(AdjList[AdjVex[idx]]);
         v.second.push_back(AdjList[idx]);
@@ -537,7 +532,7 @@ QVector<int> Graph::DijkstraForMinPath(ALVertex* vex,QPair<QVector<ALVertex*>,QV
                 idx = j;
             }
         }
-        if(idx == -1){  //存在非联通结点
+        if(idx == -1){  //exist non-connected nodes
             return MinPath;
         }
         flag[idx] = 1;

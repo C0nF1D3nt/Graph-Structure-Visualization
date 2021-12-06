@@ -121,8 +121,7 @@ void MyMainScene::VisitedAnimation(QGraphicsItem* item){
     timeline->setFrameRange(0,200);
     VisitQueue.push_back(item);
     if(item->type() == MyVertex::Type){
-        MyVertex* vex = qgraphicsitem_cast<MyVertex*>(item);        
-        //emit VertexVisited(vex);
+        MyVertex* vex = qgraphicsitem_cast<MyVertex*>(item);
         connect(timeline,&QTimeLine::frameChanged,[=](int frame){
             QEasingCurve curve = QEasingCurve::InOutCirc;
             int alpha = 50 + 205.0*curve.valueForProgress(frame/200.0);
@@ -130,7 +129,6 @@ void MyMainScene::VisitedAnimation(QGraphicsItem* item){
         });
     }else if(item->type() == MyLine::Type){
         MyLine* line = qgraphicsitem_cast<MyLine*>(item);
-        //emit EdgeVisited(line);
         connect(timeline,&QTimeLine::frameChanged,[=](int frame){
             QEasingCurve curve = QEasingCurve::InOutCirc;
             int alpha = 50 + 205.0*curve.valueForProgress(frame/200.0);

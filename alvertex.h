@@ -4,16 +4,16 @@
 #include <QString>
 #include "aledge.h"
 
-class ALVertex  //邻接表
+class ALVertex  //adjacency list
 {
 public:
 
     ALVertex(QString str = "",int idx = 0);
 
-    QString data;  //顶点名字
-    ALEdge* firstedge;  //第一条与该顶点连接的边
-    int id;  //顶点下标
-    int flag; //访问标记
+    QString data;  //vertex name
+    ALEdge* firstedge;  //first edge
+    int id;  //Vertex id
+    int flag; //Visited flag
 };
 
 #endif // ALVERTEX_H
