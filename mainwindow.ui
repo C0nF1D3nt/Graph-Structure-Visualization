@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1580</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="widget">
+   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
+    <property name="spacing">
+     <number>60</number>
+    </property>
+    <property name="leftMargin">
+     <number>50</number>
+    </property>
+    <property name="topMargin">
+     <number>50</number>
+    </property>
+    <property name="rightMargin">
+     <number>50</number>
+    </property>
+    <property name="bottomMargin">
+     <number>50</number>
+    </property>
+    <item>
+     <layout class="QVBoxLayout" name="mainLayout"/>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="InfoLayout">
+      <item>
+       <widget class="QWidget" name="widget_2" native="true">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>20</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string>Output</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextBrowser" name="OutputWidget">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QTextBrowser{ border-radius: 10px;background:white;border:1px solid #2c2c2c; }</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTabWidget" name="TabWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>450</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>100000</width>
+          <height>300</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Comic Sans MS</family>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QTabBar::tab:hover
+{
+	color:#618BE5;
+	background:transparent;
+}
+
+QTabBar::tab:selected
+{
+	color:#E65100;
+	background:transparent;	
+}
+
+QTabWidget::pane
+{
+	border-radius: 8px;
+	background: white;
+	border:1px solid #2c2c2c;
+}
+
+
+QTabWidget::tab-bar {  	
+    alignment: left;  
+	left:10px;
+	
+}</string>
+        </property>
+        <property name="currentIndex">
+         <number>1</number>
+        </property>
+        <widget class="QWidget" name="Graph">
+         <attribute name="title">
+          <string>Graph</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QVBoxLayout" name="GraphLayout"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="Func">
+         <attribute name="title">
+          <string>Function</string>
+         </attribute>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QWidget" name="widget_3" native="true">
+              <layout class="QVBoxLayout" name="verticalLayout_7">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <item>
+                  <widget class="QPushButton" name="DFSBtn">
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Corbel</family>
+                     <pointsize>14</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{background-color:#00000000;border-radius:5px;border:1px solid #2c2c2cE0;}
+QPushButton:hover{background-color:#1a000000;border-radius:5px;}
+QPushButton:pressed{background-color:#2a000000;border-radius:5px;}
+QPushButton::menu-indicator{image:none}</string>
+                   </property>
+                   <property name="text">
+                    <string>DFS</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="PrimBtn">
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Corbel</family>
+                     <pointsize>14</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{background-color:#00000000;border-radius:5px;border:1px solid #2c2c2cE0;}
+QPushButton:hover{background-color:#1a000000;border-radius:5px;}
+QPushButton:pressed{background-color:#2a000000;border-radius:5px;}</string>
+                   </property>
+                   <property name="text">
+                    <string>Prim</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QWidget" name="widget_4" native="true">
+              <layout class="QVBoxLayout" name="verticalLayout_9">
+               <item>
+                <layout class="QVBoxLayout" name="verticalLayout_8">
+                 <item>
+                  <widget class="QPushButton" name="BFSBtn">
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Corbel</family>
+                     <pointsize>14</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{background-color:#00000000;border-radius:5px;border:1px solid #2c2c2cE0;}
+QPushButton:hover{background-color:#1a000000;border-radius:5px;}
+QPushButton:pressed{background-color:#2a000000;border-radius:5px;}
+QPushButton::menu-indicator{image:none}</string>
+                   </property>
+                   <property name="text">
+                    <string>BFS</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_2">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="DijkstraBtn">
+                   <property name="minimumSize">
+                    <size>
+                     <width>200</width>
+                     <height>50</height>
+                    </size>
+                   </property>
+                   <property name="font">
+                    <font>
+                     <family>Corbel</family>
+                     <pointsize>14</pointsize>
+                     <weight>75</weight>
+                     <bold>true</bold>
+                    </font>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{background-color:#00000000;border-radius:5px;border:1px solid #2c2c2cE0;}
+QPushButton:hover{background-color:#1a000000;border-radius:5px;}
+QPushButton:pressed{background-color:#2a000000;border-radius:5px;}</string>
+                   </property>
+                   <property name="text">
+                    <string>Dijkstra</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="Structure">
+         <attribute name="title">
+          <string>Structure</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="VertexInfo">
+         <attribute name="title">
+          <string>Info</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="infoLayout"/>
+        </widget>
+        <widget class="QWidget" name="EdgeInfo">
+         <attribute name="title">
+          <string>Page</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <layout class="QVBoxLayout" name="EdgeInfoLayout"/>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

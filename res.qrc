@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/modify.png</file>
+        <file>image/correct.png</file>
+        <file>image/false.png</file>
+        <file>image/menu.png</file>
+        <file>image/modifying.png</file>
+        <file>image/back.png</file>
+        <file>image/load.png</file>
+        <file>image/save.png</file>
+        <file>image/clear1.png</file>
+        <file>image/graph.png</file>
+    </qresource>
+</RCC>
